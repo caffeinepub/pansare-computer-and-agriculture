@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cabinet Grotesk - Display/Headings */
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("/assets/fonts/CabinetGrotesk-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Satoshi - Body */
+@font-face {
+  font-family: "Satoshi";
+  src: url("/assets/fonts/Satoshi-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Base neutrals - warm white */
+    --background: 0.985 0.004 85;
+    --foreground: 0.18 0.02 260;
+
+    /* Cards - crisp white */
+    --card: 0.998 0.001 85;
+    --card-foreground: 0.18 0.02 260;
+
+    /* Popover */
+    --popover: 0.998 0.001 85;
+    --popover-foreground: 0.18 0.02 260;
+
+    /* Primary - deep navy-slate for Computer */
+    --primary: 0.28 0.07 255;
+    --primary-foreground: 0.98 0.002 255;
+
+    /* Secondary - warm muted */
+    --secondary: 0.94 0.008 85;
+    --secondary-foreground: 0.28 0.04 255;
+
+    /* Muted */
+    --muted: 0.94 0.006 85;
+    --muted-foreground: 0.52 0.02 240;
+
+    /* Accent - forest green for Agriculture */
+    --accent: 0.92 0.05 155;
+    --accent-foreground: 0.2 0.08 155;
+
+    /* Destructive */
+    --destructive: 0.55 0.22 27;
+    --destructive-foreground: 0.98 0.002 27;
+
+    /* Border & Input */
+    --border: 0.88 0.01 85;
+    --input: 0.88 0.01 85;
+    --ring: 0.55 0.12 255;
+
+    /* Department-specific tokens */
+    --computer: 0.28 0.09 255;
+    --computer-light: 0.93 0.04 255;
+    --computer-medium: 0.55 0.14 255;
+    --computer-foreground: 0.98 0.002 255;
+
+    --agriculture: 0.38 0.12 155;
+    --agriculture-light: 0.92 0.06 155;
+    --agriculture-medium: 0.55 0.14 155;
+    --agriculture-foreground: 0.98 0.002 155;
+
+    /* Brand gold accent */
+    --gold: 0.72 0.14 75;
+    --gold-light: 0.95 0.06 75;
+
+    /* Charts */
+    --chart-1: 0.55 0.14 255;
+    --chart-2: 0.45 0.14 155;
+    --chart-3: 0.65 0.16 75;
+    --chart-4: 0.55 0.18 320;
+    --chart-5: 0.60 0.14 35;
+
+    /* Sidebar */
+    --sidebar: 0.24 0.06 255;
+    --sidebar-foreground: 0.92 0.01 255;
+    --sidebar-primary: 0.65 0.14 255;
+    --sidebar-primary-foreground: 0.98 0.002 255;
+    --sidebar-accent: 0.32 0.08 255;
+    --sidebar-accent-foreground: 0.92 0.01 255;
+    --sidebar-border: 0.35 0.07 255;
+    --sidebar-ring: 0.55 0.12 255;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Satoshi", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Cabinet Grotesk", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .dept-computer {
+    background: oklch(var(--computer-light));
+    color: oklch(var(--computer));
+    border-color: oklch(var(--computer-medium) / 0.3);
+  }
+
+  .dept-agriculture {
+    background: oklch(var(--agriculture-light));
+    color: oklch(var(--agriculture));
+    border-color: oklch(var(--agriculture-medium) / 0.3);
+  }
+
+  .gradient-computer {
+    background: linear-gradient(135deg, oklch(var(--computer)) 0%, oklch(0.38 0.12 230) 100%);
+  }
+
+  .gradient-agriculture {
+    background: linear-gradient(135deg, oklch(var(--agriculture)) 0%, oklch(0.5 0.15 140) 100%);
+  }
+
+  .gradient-hero {
+    background: linear-gradient(160deg, oklch(0.22 0.06 255) 0%, oklch(0.18 0.04 200) 50%, oklch(0.25 0.08 145) 100%);
+  }
+
+  .text-computer {
+    color: oklch(var(--computer));
+  }
+
+  .text-agriculture {
+    color: oklch(var(--agriculture));
+  }
+
+  .bg-computer-light {
+    background-color: oklch(var(--computer-light));
+  }
+
+  .bg-agriculture-light {
+    background-color: oklch(var(--agriculture-light));
+  }
+
+  .border-computer {
+    border-color: oklch(var(--computer-medium) / 0.4);
+  }
+
+  .border-agriculture {
+    border-color: oklch(var(--agriculture-medium) / 0.4);
+  }
+
+  .noise-texture {
+    position: relative;
+  }
+
+  .noise-texture::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 0;
+  }
+
+  .card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px oklch(0.18 0.04 255 / 0.12);
+  }
+
+  .font-display {
+    font-family: "Cabinet Grotesk", sans-serif;
+  }
+}
